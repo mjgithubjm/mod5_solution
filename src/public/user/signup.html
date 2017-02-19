@@ -1,5 +1,4 @@
 <div><h1>Simple Form Validation</h1>
-
     <fieldset>
       <legend>Registration</legend>
       <form name='regForm' novalidate>
@@ -53,7 +52,7 @@
         <input type="text" name="shortname" placeholder="Menu item"
           ng-model="reg.user.shortname"
           required>
-          <span ng-if="regForm.shortname.$invalid && regForm.shortname.$touched">
+          <span ng-if="(!reg.completed) && regForm.shortname.$touched">
             No such menu number exists
           </span>
           <br>
@@ -62,15 +61,9 @@
           ng-disabled="regForm.$invalid"
           ng-click="reg.submit()">Submit</button>
 
-          <div style="margin-top: 10px;">
-            Form valid? {{ regForm.$valid }}
+          <div style="margin-top: 10px;" ng-if="(reg.saved)">
+            Your information has been saved
           </div>
       </form>
-    </fieldset>
-
-    <div id="info" ng-if="reg.completed">
-      Username: {{ reg.user.firstname}} <br>
-      Email: {{ reg.user.email}} <br>
-      Phone: {{ reg.user.phone }}
-    </div>
+    </fieldset>    
 </div>
